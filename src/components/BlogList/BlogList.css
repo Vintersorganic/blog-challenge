@@ -1,0 +1,33 @@
+.bloglist-container {
+  margin-top: 100px !important;
+}
+
+.title {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.listitem-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button-spinner {
+  margin-right: 6px;
+  align-self: center;
+}
+
+@media (max-width: 992px) {
+  .listitem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+  }
+  .listitem-container div {
+    margin-top: 10px;
+  }
+}
