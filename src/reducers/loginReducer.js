@@ -1,6 +1,6 @@
 import loginService from '../services/login'
-// import { setNotification } from './notificationReducer'
 import { setLoadingFalse, setLoadingTrue } from './loadingReducer'
+import { setNotification } from './notificationReducer'
 
 const loginReducer = (state = null, action) => {
   switch (action.type) {
@@ -29,15 +29,14 @@ export const login = (credentials) => {
       })
       dispatch(setLoadingFalse())
     } catch (e) {
+      dispatch(setNotification('Usuario y/o contraseñas incorrectos.', 4))
       dispatch(setLoadingFalse())
-      // dispatch(setNotification('Mail y/o password incorrectos.', 3))
     }
   }
 }
 
 export const logout = () => {
   return async dispatch => {
-    // dispatch(setLoadingFalse())
     window.localStorage.removeItem('loggedBlogAppUser')
     dispatch({
       type: 'LOGOUT_USER',
@@ -48,13 +47,18 @@ export const logout = () => {
 
 export const initializeUser = () => {
   return async dispatch => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+    try {
+      const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       dispatch({
         type: 'INIT_USER',
         data: user
       })
+    }
+    
+    } catch (e) {
+      console.log(e)
     }
   }
 }

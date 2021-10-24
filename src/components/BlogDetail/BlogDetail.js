@@ -1,13 +1,18 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Card } from 'react-bootstrap'
+import { Card} from 'react-bootstrap'
 import './BlogDetail.css'
 import { Redirect } from 'react-router'
+import { setNotification } from '../../reducers/notificationReducer'
+import { useDispatch } from 'react-redux'
 
 const BlogDetail = () => {
+  const dispatch = useDispatch()
   const blogs = useSelector(state => state.blogs)
 
   if (blogs.length < 1) {
+    dispatch(setNotification('No se encontró el blog solicitado.', 4))
+    
     return <Redirect to='/home' />
   }
 

@@ -60,8 +60,7 @@ export const blogDetails = id => {
       })
       dispatch(setLoadingFalse())
     } catch (e) {
-      dispatch(setLoadingFalse())
-      console.log(e)
+      dispatch(setLoadingFalse())     
     }
   }
 }
@@ -84,7 +83,6 @@ export const newBlog = (content) => {
 }
 
 export const editBlog = (content, id) => {
-  
   return async dispatch => {
     try {
       dispatch(setLoadingTrue())

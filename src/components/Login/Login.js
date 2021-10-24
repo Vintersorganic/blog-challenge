@@ -1,8 +1,7 @@
 import React from 'react'
-import { Form, Button, Container, Row, Col, Alert, Card } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Alert, Card} from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import loginIcon from '../../images/loginIcon.svg'
-// import loginPageImage from '../../images/superheroes-6.png'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { useDispatch } from 'react-redux'
@@ -11,10 +10,10 @@ import './Login.css'
 import { useSelector } from 'react-redux'
 
 const Login = () => {
+  const notification = useSelector(state => state.notification)
   const history = useHistory()
   const dispatch = useDispatch()
-  const message = useSelector(state => state.message)
-
+  
   const handleLogin = (credentials) => {
     dispatch(login(credentials))
     history.push('/home')
@@ -83,7 +82,7 @@ const Login = () => {
                 </Form>
               )}
             </Formik>
-            { message && <Alert variant="danger">{message}</Alert>}
+            { notification && <Alert variant="danger">{notification}</Alert>}
           </Card>
         </Col>
       </Row>

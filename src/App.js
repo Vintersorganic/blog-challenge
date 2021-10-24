@@ -18,6 +18,7 @@ function App() {
   const user = useSelector(state => state.user)
   const blogs = useSelector(state => state.blogs)
   const loading = useSelector(state => state.loading)
+  const notification = useSelector(state => state.notification)
 
   useEffect(() => {
     dispatch(initializeUser())
@@ -33,6 +34,8 @@ function App() {
   const blog = match
     ? blogs.find(blog => blog.id === Number(match.params.id))
     : null 
+
+    
   if (user === null) {
     return (
       <Switch className='container'>
@@ -55,6 +58,7 @@ function App() {
       <Switch>
         <Route path='/home'>
           <BlogList />
+          
         </Route>
         <Route path='/newblog'>
           <BlogCreation />
@@ -66,8 +70,8 @@ function App() {
         </Route>
         <Route path='/:id'>
           { loading ? <LoadingSpinner />
-          : <BlogDetail />
-          }
+          : <BlogDetail />}
+          {notification && console.log(notification)}
         </Route>
       </Switch>
     </Container>

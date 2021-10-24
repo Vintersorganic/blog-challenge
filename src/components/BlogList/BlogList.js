@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, ListGroup, Button, Spinner  } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import './BlogList.css'
-import { deleteBlog, blogDetails } from '../../reducers/blogReducer'
+import { deleteBlog, blogDetails, initializeBlogs } from '../../reducers/blogReducer'
 import { LinkContainer } from 'react-router-bootstrap'
 
 const BlogList = () => {
@@ -16,6 +16,10 @@ const BlogList = () => {
 
   const blogDetailHandler = id => {
     dispatch(blogDetails(id))
+  }
+  if (!Array.isArray(blogs)) {
+    dispatch(initializeBlogs())
+    return null
   }
   
   return (
