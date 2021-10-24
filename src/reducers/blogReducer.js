@@ -9,6 +9,8 @@ const blogReducer = (state = [], action) => {
       return [...state, action.data]    
     case 'GET_BLOG':
       return action.data 
+    case 'EDIT_BLOG':
+      return state.map(blog => blog.id !== action.data.id ? blog : action.data) 
     case 'DELETE_BLOG':
       return state.filter(blog => blog.id !== action.data)  
     default:
@@ -68,7 +70,6 @@ export const newBlog = (content) => {
   return async dispatch => {
     try {
       dispatch(setLoadingTrue())
-      console.log(content, 'REDUCER')
       const blog = await blogService.addBlog(content)
       dispatch({
         type: 'NEW_BLOG',
@@ -79,7 +80,24 @@ export const newBlog = (content) => {
       dispatch(setLoadingFalse())
       console.log(e)
     }
-    
+  }
+}
+
+export const editBlog = (content, id) => {
+  
+  return async dispatch => {
+    try {
+      dispatch(setLoadingTrue())
+      const editedBlog = await blogService.updateBlog(id, content)
+      dispatch({
+        type: 'EDIT_BLOG',
+        data: editedBlog
+      })
+      dispatch(setLoadingFalse())
+    } catch (e) {
+      dispatch(setLoadingFalse())
+      console.log(e)
+    }
   }
 }
 

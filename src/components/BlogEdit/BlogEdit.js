@@ -1,18 +1,22 @@
 import React from 'react'
 import { Card, Container, Form, Col, Row, Button } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { newBlog } from '../../reducers/blogReducer'
+import { editBlog } from '../../reducers/blogReducer'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { useHistory } from 'react-router'
+import { Redirect, useHistory } from 'react-router'
 
-const BlogCreation = () => {
+const BlogEdit = ({ blog }) => {
 
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const addBlogHandler = content => {
-    dispatch(newBlog(content))
+  if (!blog) {
+   return <Redirect to='/home'/>
+  }
+
+  const editBlogHandler = content => {
+    dispatch(editBlog(content, blog.id))
     history.push('/home')
   }
 
@@ -38,16 +42,16 @@ const BlogCreation = () => {
   return (
     <Container style={{marginTop:100}} >
       <Card className="mt-5 shadow"  border='dark'>
-        <Card.Header as="h5">Creá un nuevo blog.</Card.Header>
+        <Card.Header as="h5">Editá tu blog.</Card.Header>
         <Card.Body>
 
         <Formik
           validationSchema={schema}
-          onSubmit={addBlogHandler}
+          onSubmit={editBlogHandler}
           initialValues={{
-            userId: 4,
-            title: '',
-            body: ''
+            userId: blog.userId,
+            title: blog.title,
+            body: blog.body
           }}
           >
           {({
@@ -63,7 +67,7 @@ const BlogCreation = () => {
               <Form.Label column sm="3">
               Usuario
               </Form.Label>
-            <Col sm="6">
+            <Col sm="8">
               <Form.Control 
                 name='userId'
                 type='number' 
@@ -83,7 +87,7 @@ const BlogCreation = () => {
               <Form.Label column sm="3">
                 Título
               </Form.Label>
-              <Col sm="6">
+              <Col sm="8">
                 <Form.Control
                   type="text"
                   name='title' 
@@ -102,7 +106,7 @@ const BlogCreation = () => {
               <Form.Label column sm="3">
                 Contenido
               </Form.Label>
-              <Col sm="6">
+              <Col sm="8">
                 <Form.Control
                   rows={3}
                   as="textarea"
@@ -120,7 +124,7 @@ const BlogCreation = () => {
               </Col>
             </Form.Group>
             <Button variant="dark" type="submit" size="lg" disabled={!isValid}>
-              Crear
+              Editá
             </Button>
           </Form>
           )}
@@ -131,4 +135,4 @@ const BlogCreation = () => {
   )
 }
 
-export default BlogCreation
+export default BlogEdit

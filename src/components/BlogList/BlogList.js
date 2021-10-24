@@ -14,7 +14,7 @@ const BlogList = () => {
     dispatch(deleteBlog(id))
   }
 
-  const handleBlogDetail = id => {
+  const blogDetailHandler = id => {
     dispatch(blogDetails(id))
   }
   
@@ -27,10 +27,12 @@ const BlogList = () => {
             <ListGroup.Item className='listitem-container' key={blog.id}>
               {blog.title}
               <div>
-                <LinkContainer to={`blogs/${blog.id}`}>
-                  <Button variant="outline-dark" onClick={() => handleBlogDetail(blog.id)}>Detalle</Button>
+                <LinkContainer to={`/${blog.id}`}>
+                  <Button variant="outline-dark" onClick={() => blogDetailHandler(blog.id)}>Detalle</Button>
                 </LinkContainer>
-                <Button variant="outline-dark">Editar</Button>
+                <LinkContainer to={`/${blog.id}/edit`}>
+                  <Button variant="outline-dark">Editar</Button>
+                </LinkContainer>
                 <Button variant="outline-dark" disabled={loading} onClick={() => deleteBlogHandler(blog.id)}>
                   {loading && <Spinner
                     as="span"
