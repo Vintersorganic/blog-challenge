@@ -25,10 +25,6 @@ function App() {
     dispatch(initializeBlogs())
   }, [dispatch])
 
-  // const updateBlog = async (id, content) => {
-  //   const response = await blogService.updateBlog(id, content)
-  //   console.log(response)
-  // }
   const match = useRouteMatch('/:id/edit')
   
   const blog = match
@@ -57,8 +53,7 @@ function App() {
 
       <Switch>
         <Route path='/home'>
-          <BlogList />
-          
+          <BlogList />         
         </Route>
         <Route path='/newblog'>
           <BlogCreation />
@@ -70,7 +65,7 @@ function App() {
         </Route>
         <Route path='/:id'>
           { loading ? <LoadingSpinner />
-          : <BlogDetail />}
+          : <BlogDetail blog={blog}/>}
           {notification && console.log(notification)}
         </Route>
       </Switch>

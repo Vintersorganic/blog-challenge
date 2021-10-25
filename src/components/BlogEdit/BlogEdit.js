@@ -124,7 +124,7 @@ const BlogEdit = ({ blog }) => {
               </Col>
             </Form.Group>
             <Button variant="dark" type="submit" size="lg" disabled={!isValid}>
-              Editá
+              Guardar
             </Button>
           </Form>
           )}

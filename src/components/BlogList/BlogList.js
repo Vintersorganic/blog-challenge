@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import './BlogList.css'
 import { deleteBlog, blogDetails, initializeBlogs } from '../../reducers/blogReducer'
 import { LinkContainer } from 'react-router-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 const BlogList = () => {
   const dispatch = useDispatch()
@@ -38,15 +40,18 @@ const BlogList = () => {
                   <Button variant="outline-dark">Editar</Button>
                 </LinkContainer>
                 <Button variant="outline-dark" disabled={loading} onClick={() => deleteBlogHandler(blog.id)}>
-                  {loading && <Spinner
-                    as="span"
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    aria-hidden="true"
-                    className='button-spinner'
-                  />}
-                  Eliminar
+                  {loading ? 
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
+                      aria-hidden="true"
+                      className='button-spinner'
+                    />
+                    : <FontAwesomeIcon icon={ faTrashAlt } />
+                  }
+                   Eliminar
                 </Button>
               </div>
             </ListGroup.Item>
