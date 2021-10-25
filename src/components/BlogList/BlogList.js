@@ -23,13 +23,13 @@ const BlogList = () => {
     dispatch(initializeBlogs())
     return null
   }
-  
+
   return (
     <Container className='bloglist-container' >
-        <h1 className="title">Blogs</h1>
+      <h1 className="title">Blogs</h1>
       <ListGroup variant="flush">
         {
-          blogs.map(blog => 
+          blogs.map(blog =>
             <ListGroup.Item className='listitem-container' key={blog.id}>
               {blog.title}
               <div>
@@ -40,7 +40,7 @@ const BlogList = () => {
                   <Button variant="outline-dark">Editar</Button>
                 </LinkContainer>
                 <Button variant="outline-dark" disabled={loading} onClick={() => deleteBlogHandler(blog.id)}>
-                  {loading ? 
+                  {loading ?
                     <Spinner
                       as="span"
                       animation="border"

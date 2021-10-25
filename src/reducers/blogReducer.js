@@ -3,18 +3,18 @@ import { setLoadingTrue, setLoadingFalse } from './loadingReducer'
 
 const blogReducer = (state = [], action) => {
   switch(action.type) {
-    case 'INIT_BLOGS':
-      return action.data
-    case 'NEW_BLOG':
-      return [...state, action.data]    
-    case 'GET_BLOG':
-      return action.data 
-    case 'EDIT_BLOG':
-      return state.map(blog => blog.id !== action.data.id ? blog : action.data) 
-    case 'DELETE_BLOG':
-      return state.filter(blog => blog.id !== action.data)  
-    default:
-      return state;
+  case 'INIT_BLOGS':
+    return action.data
+  case 'NEW_BLOG':
+    return [...state, action.data]
+  case 'GET_BLOG':
+    return action.data
+  case 'EDIT_BLOG':
+    return state.map(blog => blog.id !== action.data.id ? blog : action.data)
+  case 'DELETE_BLOG':
+    return state.filter(blog => blog.id !== action.data)
+  default:
+    return state
   }
 }
 
@@ -25,7 +25,7 @@ export const  initializeBlogs = () => {
       dispatch({
         type: 'INIT_BLOGS',
         data: blogs
-    })
+      })
     } catch (e) {
       console.log(e)
     }
@@ -34,7 +34,7 @@ export const  initializeBlogs = () => {
 
 export const deleteBlog = id => {
   return async dispatch => {
-    try { 
+    try {
       dispatch(setLoadingTrue())
       await blogService.destroyBlog(id)
       dispatch({
@@ -60,7 +60,7 @@ export const blogDetails = id => {
       })
       dispatch(setLoadingFalse())
     } catch (e) {
-      dispatch(setLoadingFalse())     
+      dispatch(setLoadingFalse())
     }
   }
 }

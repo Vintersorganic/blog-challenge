@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Container, Row, Col, Alert, Card} from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Alert, Card } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import loginIcon from '../../images/loginIcon.svg'
 import { Formik } from 'formik'
@@ -13,7 +13,7 @@ const Login = () => {
   const notification = useSelector(state => state.notification)
   const history = useHistory()
   const dispatch = useDispatch()
-  
+
   const handleLogin = (credentials) => {
     dispatch(login(credentials))
     history.push('/home')
@@ -36,7 +36,7 @@ const Login = () => {
             </Card.Title>
             <hr />
             <Card.Img className='loginIcon-img' alt="Login Icon" src={loginIcon}>
-               
+
             </Card.Img>
             <Formik
               validationSchema={schema}

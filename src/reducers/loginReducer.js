@@ -49,14 +49,14 @@ export const initializeUser = () => {
   return async dispatch => {
     try {
       const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      dispatch({
-        type: 'INIT_USER',
-        data: user
-      })
-    }
-    
+      if (loggedUserJSON) {
+        const user = JSON.parse(loggedUserJSON)
+        dispatch({
+          type: 'INIT_USER',
+          data: user
+        })
+      }
+
     } catch (e) {
       console.log(e)
     }

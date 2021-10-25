@@ -36,95 +36,95 @@ const BlogCreation = () => {
   })
 
   return (
-    <Container style={{marginTop:100}} >
+    <Container style={{ marginTop:100 }} >
       <Card className="mt-5 shadow"  border='dark'>
         <Card.Header as="h5">Creá un nuevo blog.</Card.Header>
         <Card.Body>
 
-        <Formik
-          validationSchema={schema}
-          onSubmit={addBlogHandler}
-          initialValues={{
-            userId: 4,
-            title: '',
-            body: ''
-          }}
+          <Formik
+            validationSchema={schema}
+            onSubmit={addBlogHandler}
+            initialValues={{
+              userId: 4,
+              title: '',
+              body: ''
+            }}
           >
-          {({
-            handleSubmit,
-            handleChange,
-            values,
-            touched,
-            isValid,
-            errors,
-          }) => (
-          <Form noValidate className='p-3 font-weight-bold' onSubmit={handleSubmit}>
-            <Form.Group as={Row} className="mb-3" controlId="validationFormik01">
-              <Form.Label column sm="3">
+            {({
+              handleSubmit,
+              handleChange,
+              values,
+              touched,
+              isValid,
+              errors,
+            }) => (
+              <Form noValidate className='p-3 font-weight-bold' onSubmit={handleSubmit}>
+                <Form.Group as={Row} className="mb-3" controlId="validationFormik01">
+                  <Form.Label column sm="3">
               Usuario
-              </Form.Label>
-            <Col sm="6">
-              <Form.Control 
-                name='userId'
-                type='number' 
-                placeholder="Ingresá tu usuario" 
-                value={values.userId}
-                onChange={handleChange}
-                isValid={touched.userId && !errors.userId}
-                isInvalid={!!errors.userId}
-              />
-              <Form.Control.Feedback type="invalid">
-                  {errors.userId}
-                </Form.Control.Feedback>
-            </Col>
-            </Form.Group>
+                  </Form.Label>
+                  <Col sm="6">
+                    <Form.Control
+                      name='userId'
+                      type='number'
+                      placeholder="Ingresá tu usuario"
+                      value={values.userId}
+                      onChange={handleChange}
+                      isValid={touched.userId && !errors.userId}
+                      isInvalid={!!errors.userId}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.userId}
+                    </Form.Control.Feedback>
+                  </Col>
+                </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="textTitle">
-              <Form.Label column sm="3">
+                <Form.Group as={Row} className="mb-3" controlId="textTitle">
+                  <Form.Label column sm="3">
                 Título
-              </Form.Label>
-              <Col sm="6">
-                <Form.Control
-                  type="text"
-                  name='title' 
-                  placeholder="Ingresá el título de tu blog"   
-                  value={values.title}
-                  onChange={handleChange}
-                  isValid={touched.title && !errors.title}
-                  isInvalid={!!errors.title}
-                   />                 
-                <Form.Control.Feedback type="invalid">
-                  {errors.title}
-                </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="textContent">
-              <Form.Label column sm="3">
+                  </Form.Label>
+                  <Col sm="6">
+                    <Form.Control
+                      type="text"
+                      name='title'
+                      placeholder="Ingresá el título de tu blog"
+                      value={values.title}
+                      onChange={handleChange}
+                      isValid={touched.title && !errors.title}
+                      isInvalid={!!errors.title}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.title}
+                    </Form.Control.Feedback>
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Row} className="mb-3" controlId="textContent">
+                  <Form.Label column sm="3">
                 Contenido
-              </Form.Label>
-              <Col sm="6">
-                <Form.Control
-                  rows={3}
-                  as="textarea"
-                  type="text"
-                  name='body'
-                  placeholder="Ingresá el contenido de tu blog"   
-                  value={values.body}
-                  onChange={handleChange}
-                  isValid={touched.body && !errors.body}
-                  isInvalid={!!errors.body}
-                   />                 
-                <Form.Control.Feedback type="invalid">
-                  {errors.body}
-                </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Button variant="dark" type="submit" size="lg" disabled={!isValid}>
+                  </Form.Label>
+                  <Col sm="6">
+                    <Form.Control
+                      rows={3}
+                      as="textarea"
+                      type="text"
+                      name='body'
+                      placeholder="Ingresá el contenido de tu blog"
+                      value={values.body}
+                      onChange={handleChange}
+                      isValid={touched.body && !errors.body}
+                      isInvalid={!!errors.body}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.body}
+                    </Form.Control.Feedback>
+                  </Col>
+                </Form.Group>
+                <Button variant="dark" type="submit" size="lg" disabled={!isValid}>
               Crear
-            </Button>
-          </Form>
-          )}
-        </Formik>
+                </Button>
+              </Form>
+            )}
+          </Formik>
         </Card.Body>
       </Card>
     </Container>
